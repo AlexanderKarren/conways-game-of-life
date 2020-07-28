@@ -2,9 +2,9 @@
 
 ## Links
 
-* (Trello)[https://trello.com/b/sgTAfxMj/conways-game-of-life]
-* (Figma)[https://www.figma.com/file/savuRtxvXybeHVGU31MGbi/Conway-s-Game-of-Life?node-id=0%3A1]
-* (Example)[https://bitstorm.org/gameoflife/]
+* [Trello](https://trello.com/b/sgTAfxMj/conways-game-of-life)
+* [Figma](https://www.figma.com/file/savuRtxvXybeHVGU31MGbi/Conway-s-Game-of-Life?node-id=0%3A1)
+* [Example](https://bitstorm.org/gameoflife/)
 
 ## Rules
 
