@@ -1,7 +1,7 @@
 import React from 'react'
 import produce from 'immer'
 
-const Grid = ({grid, setGrid}) => {
+const Grid = ({grid, setGrid, gridColor}) => {
 
     // const [running, setRunning] = useState(false);
     
@@ -14,6 +14,7 @@ const Grid = ({grid, setGrid}) => {
         <div className="Grid">
         {grid.map((rows, i) => rows.map((col, j) => <div
             className={col ? "cell alive" : "cell dead"}
+            style={{backgroundColor: col ? gridColor : undefined}}
             onClick={() => setGrid(produce(grid, gridCopy => {
             gridCopy[i][j] = grid[i][j] ? 0 : 1;
             }))}

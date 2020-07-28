@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback } from 'react'
+import selectPreset from './gridPresets'
 import Grid from './Grid'
 import Buttons from './Buttons'
 import produce from 'immer'
@@ -28,14 +29,16 @@ const emptyGrid = () => {
 }
 
 function App() {
-  const [grid, setGrid] = useState(emptyGrid)
+  const [grid, setGrid] = useState(emptyGrid);
+  const [gridColor, setGridColor] = useState(localStorage.getItem("conway-fill-color") || "#7FFF00");
+  // eslint-disable-next-line
+  const [preset, setPreset] = useState(null);
   // const [running, setRunning] = useState(false);
 
   // const runningRef = useRef(running);
   // runningRef.current = running;
 
   const advanceCycle = useCallback(() => {
-    console.log("advancing cycle...")
     setGrid(g => {
       return produce(g, gridCopy => {
         for (let i = 0; i < numRows; i++) {
@@ -45,10 +48,10 @@ function App() {
               const newI = i + x;
               const newJ = j + y;
               if ((newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols)) {
-                neighbors += gridCopy[newI][newJ]
+                neighbors += g[newI][newJ]
               }
             });
-            console.log("i:", i, "j:", j, "value:", g[i][j], "neighbors:", neighbors)
+            // console.log("i:", i, "j:", j, "value:", g[i][j], "neighbors:", neighbors)
             if (neighbors < 2 || neighbors > 3) {
               gridCopy[i][j] = 0;
             }
@@ -62,14 +65,21 @@ function App() {
     });
 }, [])
 
+const changePreset = gridPreset => {
+  resetGrid();
+  setGrid(g => {
+    return produce(g, gridCopy => selectPreset(gridCopy, gridPreset))
+  }, []);
+}
+
 const resetGrid = () => {
   setGrid(emptyGrid)
 }
 
   return (
     <div className="App">
-      <Grid grid={grid} setGrid={setGrid} />
-      <Buttons advanceCycle={advanceCycle} resetGrid={resetGrid} />
+      <Grid grid={grid} setGrid={setGrid} gridColor={gridColor} />
+      <Buttons advanceCycle={advanceCycle} resetGrid={resetGrid} setGridColor={setGridColor} changePreset={changePreset} />
     </div>
   );
 }
