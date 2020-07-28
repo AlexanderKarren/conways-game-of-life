@@ -1,18 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import produce from 'immer'
 
-const numRows = 50
-const numCols = 25
+const Grid = ({grid, setGrid}) => {
 
-const Grid = () => {
-    const [grid, setGrid] = useState(() => {
-        const rows = []
-        for (let i = 0; i < numRows; i++) {
-          rows.push(Array.from(Array(numCols), () => 0));
-        }
+    // const [running, setRunning] = useState(false);
     
-        return rows;
-    })
+    // const runningRef = useRef(running);
+    // runningRef.current = running;
 
     console.log(grid)
 

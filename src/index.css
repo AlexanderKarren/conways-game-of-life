@@ -26,17 +26,17 @@ body {
 
 .App {
 	display:flex;
-	justify-content:center;
+	flex-direction:column;
+	align-items:center;
 }
 
 .Grid {
 	display: grid;
-	grid-template-columns: repeat(50, 18px);
+	grid-template-columns: repeat(50, 15px);
 }
 
 .cell {
-	border: 1.3px solid black;
-	border-radius:1px;
+	border: 1.3px solid #D3D3D3;
 	width: 15px;
 	height: 15px;
 	transition:.1s;
@@ -44,6 +44,7 @@ body {
 
 .cell:hover {
 	cursor:pointer;
+	border: 1.5px solid black;
 	background-color:#FAFAFA;
 }
 
@@ -53,4 +54,9 @@ body {
 
 .alive {
 	background-color:#7FFF00;
+}
+
+.Buttons {
+	display:flex;
+	margin:1rem 0;
 }
