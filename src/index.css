@@ -28,16 +28,43 @@ body {
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	margin:0 20%;
+	/* margin:0 20%; */
+}
+
+h1 {
+	display:flex;
+	justify-content:center;
+}
+
+header {
+	display:flex!important;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	background-color:#007bff;
+	color:white;
+	width:100%;
+	padding:.5rem;
+}
+
+header .header-buttons {
+	display:flex;
+	justify-content:space-between;
+	width:15rem;
+}
+
+header .header-buttons button {
+	width:5rem;
 }
 
 .Grid {
 	display: grid;
 	grid-template-columns: repeat(50, 15px);
+	margin-top:1rem;
 }
 
 .cell {
-	border: 1.3px solid #D3D3D3;
+	/* border: 1.3px solid #D3D3D3; */
 	width: 15px;
 	height: 15px;
 	transition:.1s;
@@ -59,20 +86,37 @@ body {
 
 .Buttons {
 	display:flex;
-	justify-content:space-between;
+	flex-direction:column;
 	align-items:center;
-	width:100%;
-	margin:1rem 0;
-	border:1px solid gray;
+	width:47rem;
+	/* border:1px solid gray; */
 }
 
-.Buttons .dropdowns-container {
-	display:flex;
-	/* width:40%; */
+.Buttons button {
+	width:7rem;
 }
 
 .Buttons .buttons-container {
 	display:flex;
 	justify-content:space-between;
-	/* width:60%; */
+	/* border:1px solid gray; */
+	width:100%;
+	margin:.7rem 0;
+}
+
+.Buttons .dropdowns-labels {
+	display:flex;
+	justify-content:space-between;
+	width:25rem;
+}
+
+.Buttons .dropdowns-container {
+	display:flex;
+	align-items:center;
+	width:100%;
+	/* border:1px solid gray; */
+}
+
+.Buttons .dropdowns-container * {
+	margin: 0 .5rem;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import selectPreset from './gridPresets'
+import Header from './Header'
 import Grid from './Grid'
 import Buttons from './Buttons'
 import produce from 'immer'
@@ -30,13 +31,9 @@ const emptyGrid = () => {
 
 function App() {
   const [grid, setGrid] = useState(emptyGrid);
+  const [displayBorder, toggleBorder] = useState(true);
   const [gridColor, setGridColor] = useState(localStorage.getItem("conway-fill-color") || "#7FFF00");
-  // eslint-disable-next-line
-  const [preset, setPreset] = useState(null);
   // const [running, setRunning] = useState(false);
-
-  // const runningRef = useRef(running);
-  // runningRef.current = running;
 
   const advanceCycle = useCallback(() => {
     setGrid(g => {
@@ -63,23 +60,44 @@ function App() {
         console.log(gridCopy);
       });
     });
-}, [])
+  }, [])
 
-const changePreset = gridPreset => {
+  const changePreset = gridPreset => {
   resetGrid();
   setGrid(g => {
     return produce(g, gridCopy => selectPreset(gridCopy, gridPreset))
   }, []);
-}
+  }
 
-const resetGrid = () => {
-  setGrid(emptyGrid)
-}
+  const randomizeGrid = () => {
+    setGrid(g => {
+      return produce(g, gridCopy => {
+        for (let i = 0; i < numRows; i++) {
+          for (let j = 0; j < numCols; j++) {
+            gridCopy[i][j] = Math.floor(Math.random() * 2);
+          }
+        }
+      })
+    }, [])
+  }
+
+  const resetGrid = () => {
+    setGrid(emptyGrid)
+  }
 
   return (
     <div className="App">
-      <Grid grid={grid} setGrid={setGrid} gridColor={gridColor} />
-      <Buttons advanceCycle={advanceCycle} resetGrid={resetGrid} setGridColor={setGridColor} changePreset={changePreset} />
+      <Header />
+      <Grid grid={grid} setGrid={setGrid} gridColor={gridColor} displayBorder={displayBorder} />
+      <Buttons 
+        advanceCycle={advanceCycle}
+        resetGrid={resetGrid}
+        setGridColor={setGridColor}
+        changePreset={changePreset}
+        randomizeGrid={randomizeGrid}
+        displayBorder={displayBorder}
+        toggleBorder={toggleBorder}
+      />
     </div>
   );
 }
