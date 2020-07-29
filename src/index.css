@@ -41,6 +41,7 @@ body {
 h1 {
 	display:flex;
 	justify-content:center;
+	font-size:2.5rem;
 }
 
 header {
@@ -115,6 +116,7 @@ header .header-buttons button {
 	display:flex;
 	justify-content:space-between;
 	width:34rem;
+	margin-bottom:.2rem;
 }
 
 .Buttons .dropdowns-container {
