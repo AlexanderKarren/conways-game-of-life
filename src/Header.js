@@ -6,8 +6,8 @@ const Header = () => {
         <header>
             <h1>Conway's Game of Life</h1>
             <div className="header-buttons">
-                <Button variant="light">Grid</Button>
-                <Button variant="light">About</Button>
+                <Button variant="light" disabled>Grid</Button>
+                <Button variant="light" disabled>About</Button>
             </div>
         </header>
     )

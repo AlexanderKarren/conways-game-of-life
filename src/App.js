@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef } from 'react'
 import selectPreset from './gridPresets'
 import Header from './Header'
 import Grid from './Grid'
+import Alert from 'react-bootstrap/Alert'
 import Buttons from './Buttons'
 import produce from 'immer'
 
@@ -35,11 +36,16 @@ function App() {
   const [gridColor, setGridColor] = useState(localStorage.getItem("conway-fill-color") || "#7FFF00");
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState("1000");
+  const [cycles, setCycles] = useState(0);
 
   const runningRef = useRef(running);
   runningRef.current = running;
 
+  const cycleRef = useRef(cycles);
+  cycleRef.current = cycles;
+
   const advanceCycle = useCallback(() => {
+    setCycles(cycleRef.current + 1);
     setGrid(g => {
       return produce(g, gridCopy => {
         for (let i = 0; i < numRows; i++) {
@@ -75,6 +81,7 @@ function App() {
   }
 
   const changePreset = gridPreset => {
+  setCycles(0);
   resetGrid();
   setGrid(g => {
     return produce(g, gridCopy => selectPreset(gridCopy, gridPreset))
@@ -94,12 +101,14 @@ function App() {
   }
 
   const resetGrid = () => {
-    setGrid(emptyGrid)
+    setCycles(0);
+    setGrid(emptyGrid);
   }
 
   return (
     <div className="App">
       <Header />
+      <Alert variant="primary">{cycles} Lifecycles</Alert>
       <Grid grid={grid} setGrid={setGrid} gridColor={gridColor} displayBorder={displayBorder} />
       <Buttons 
         advanceCycle={advanceCycle}

@@ -28,7 +28,13 @@ body {
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	/* margin:0 20%; */
+	padding-bottom:5rem;
+}
+
+.alert-primary {
+	width:15rem;
+	display:flex;
+	justify-content:center;
 }
 
 h1 {
@@ -45,6 +51,7 @@ header {
 	color:white;
 	width:100%;
 	padding:.5rem;
+	margin-bottom:1rem;
 }
 
 header .header-buttons {
@@ -60,7 +67,6 @@ header .header-buttons button {
 .Grid {
 	display: grid;
 	grid-template-columns: repeat(50, 15px);
-	margin-top:1rem;
 }
 
 .cell {
