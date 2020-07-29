@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import selectPreset from './gridPresets'
 import Header from './Header'
 import Grid from './Grid'
@@ -33,7 +33,11 @@ function App() {
   const [grid, setGrid] = useState(emptyGrid);
   const [displayBorder, toggleBorder] = useState(true);
   const [gridColor, setGridColor] = useState(localStorage.getItem("conway-fill-color") || "#7FFF00");
-  // const [running, setRunning] = useState(false);
+  const [running, setRunning] = useState(false);
+  const [speed, setSpeed] = useState("1000");
+
+  const runningRef = useRef(running);
+  runningRef.current = running;
 
   const advanceCycle = useCallback(() => {
     setGrid(g => {
@@ -61,6 +65,14 @@ function App() {
       });
     });
   }, [])
+
+  const runSimulation = () => {
+    if (!runningRef.current) {
+      return;
+    }
+    advanceCycle();
+    setTimeout(runSimulation, parseInt(speed));
+  }
 
   const changePreset = gridPreset => {
   resetGrid();
@@ -97,6 +109,11 @@ function App() {
         randomizeGrid={randomizeGrid}
         displayBorder={displayBorder}
         toggleBorder={toggleBorder}
+        running={running}
+        runningRef={runningRef}
+        setRunning={setRunning}
+        runSimulation={runSimulation}
+        setSpeed={setSpeed}
       />
     </div>
   );

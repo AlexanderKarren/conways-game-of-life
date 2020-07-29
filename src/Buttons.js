@@ -9,17 +9,25 @@ const Buttons = ({
     changePreset,
     randomizeGrid,
     displayBorder,
-    toggleBorder}) => {
+    toggleBorder,
+    running,
+    runningRef,
+    setRunning,
+    runSimulation,
+    setSpeed}) => {
 
     const handleColorChange = event => {
         localStorage.setItem("conway-fill-color", event.target.value);
         setGridColor(event.target.value);
     }
 
-    // const toggleRunning = async () => {
-    //     await setRunning(!running);
-    //     if (running) runSimulation();
-    // }
+    const start = async () => {
+        setRunning(!running);
+        if (!running) {
+            runningRef.current = true;
+            runSimulation();
+        }
+    }
 
     return (
         <Form className="Buttons">
@@ -32,14 +40,21 @@ const Buttons = ({
                     }
                 </Button>
                 <Button onClick={resetGrid}>Clear</Button>
-                <Button><i className="fas fa-play"></i></Button>
-                <Button onClick={advanceCycle}><i className="fas fa-step-forward"></i></Button>
+                <Button onClick={start}>
+                    {running ?
+                        <i className="fas fa-stop" />
+                    :
+                        <i className="fas fa-play" />
+                    }
+                </Button>
+                <Button onClick={advanceCycle}><i className="fas fa-step-forward" /></Button>
                 <Button onClick={randomizeGrid}>Randomize</Button>
                 {/* <Button onClick={changePreset}>Test Preset</Button> */}
             </div>
             <div className="dropdowns-labels">
                 <div>Patterns</div>
                 <div>Color</div>
+                <div>Speed</div>
             </div>
             <div className="dropdowns-container">
                 <Form.Control
@@ -78,6 +93,21 @@ const Buttons = ({
                     <option value="#9400D3">Violet</option>
                     <option value="#FFFFFF">White</option>
                     <option value="#FFFF00">Yellow</option>
+                </Form.Control>
+                <Form.Control
+                    as="select"
+                    defaultValue="1000"
+                    onChange={e => {
+                        setSpeed(e.target.value)
+                        start();
+                    }}
+                    >
+                    <option value="1000">1x</option>
+                    <option value="500">2x</option>
+                    <option value="250">4x</option>
+                    <option value="200">5x</option>
+                    <option value="100">10x</option>
+                    <option value="10">100x</option>
                 </Form.Control>
             </div>
         </Form>
