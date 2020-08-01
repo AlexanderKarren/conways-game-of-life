@@ -81,11 +81,11 @@ function App() {
   }
 
   const changePreset = gridPreset => {
-  setCycles(0);
-  resetGrid();
-  setGrid(g => {
-    return produce(g, gridCopy => selectPreset(gridCopy, gridPreset))
-  }, []);
+    setCycles(0);
+    resetGrid();
+    setGrid(g => {
+      return produce(g, gridCopy => selectPreset(gridCopy, gridPreset))
+    }, []);
   }
 
   const randomizeGrid = () => {
