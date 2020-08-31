@@ -108,7 +108,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Alert variant="primary">{cycles} Lifecycles</Alert>
+      <Alert variant="primary">{cycles} Generations</Alert>
       <Grid grid={grid} setGrid={setGrid} gridColor={gridColor} displayBorder={displayBorder} />
       <Buttons 
         advanceCycle={advanceCycle}
