@@ -24,3 +24,9 @@ Note: cells that are off the edge of the grid are typically assumed to be dead. 
 * Color of simulation can be changed (what fun!)
 * Grid can be displayed or hidden
 * Grid layout can be randomized for some wacky stuff
+
+## Tech
+
+Conway's Game of Life is written in React.
+
+![conway screenshot](/screenshot.png)
