@@ -27,6 +27,6 @@ Note: cells that are off the edge of the grid are typically assumed to be dead. 
 
 ## Tech
 
-Conway's Game of Life is written in React.
+Conway's Game of Life is written in React, and is styled using bootstrap and CSS.
 
 ![conway screenshot](/screenshot.png)
