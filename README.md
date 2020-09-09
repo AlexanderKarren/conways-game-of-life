@@ -2,6 +2,7 @@
 
 ## Links
 
+* [Link to Deployed Site](https://conways-game-of-life-zeta.vercel.app/)
 * [Trello](https://trello.com/b/sgTAfxMj/conways-game-of-life)
 * [Figma](https://www.figma.com/file/savuRtxvXybeHVGU31MGbi/Conway-s-Game-of-Life?node-id=0%3A1)
 * [Project Readme](https://github.com/LambdaSchool/CS-Build-Week-1)
